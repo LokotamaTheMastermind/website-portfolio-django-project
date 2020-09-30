@@ -32,10 +32,16 @@
         <h3 class="navbar-brand banner-header"><a href="/#top" class="no-decoration text-white text-sm-center">My
                 Portfolio</a></h3>
         <div class="float-right">
-            <a href="/#begin" class="text-white no-decoration animated-link mr-5">Home</a>
-            <a href="/#about" class="text-white no-decoration animated-link mr-5">About</a>
-            <a href="{% url 'main:project-list' %}" class="text-white no-decoration animated-link mr-5">Projects</a>
-            <a href="/#contact" class="text-white no-decoration animated-link">Contact</a>
+            <a href="/#begin" class="text-white no-decoration animated-link mr-4">Home</a>
+            <a href="/#about" class="text-white no-decoration animated-link mr-4">About</a>
+            <a href="/#contact" class="text-white no-decoration animated-link mr-4">Contact</a>
+            <a href="/#projects" class="text-white no-decoration animated-link">Projects</a>
+        </div>
+        <div class="dropdown ml-2">
+            <button class="btn btn-outline-success" type="button"><i class="fab fa-github text-black-50"></i> Source
+                Code</button>&nbsp;
+            <button class="btn btn-outline-primary" type="button"><i class="fa fa-images text-white"></i>
+                <a href="{% url 'main:project-list' %}" class="btn-link no-decoration">Projects List</a></button>
         </div>
     </div>
 </nav>
