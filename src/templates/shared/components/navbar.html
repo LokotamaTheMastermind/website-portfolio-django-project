@@ -1,0 +1,42 @@
+{% load static %}
+
+{% block inline_css %}
+<style>
+    .no-decoration {
+        text-decoration: none !important;
+    }
+
+    .animated-link {
+        transition-timing-function: ease-in-out;
+        transition-property: color, color;
+        transition: .5s;
+    }
+
+    .animated-link:hover {
+        border-bottom: 1px solid #ffffff !important;
+    }
+
+    .banner-header {
+        border-bottom: solid #ffffff !important;
+    }
+
+</style>
+{% endblock inline_css %}
+
+{% block body %}
+<!-- TODO: make this section responsive -->
+
+<!-- Navbar component -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark container-fluid sticky-top fixed-top">
+    <div class="container">
+        <h3 class="navbar-brand banner-header"><a href="/#top" class="no-decoration text-white text-sm-center">My
+                Portfolio</a></h3>
+        <div class="float-right">
+            <a href="/#begin" class="text-white no-decoration animated-link mr-5">Home</a>
+            <a href="/#about" class="text-white no-decoration animated-link mr-5">About</a>
+            <a href="{% url 'main:project-list' %}" class="text-white no-decoration animated-link mr-5">Projects</a>
+            <a href="/#contact" class="text-white no-decoration animated-link">Contact</a>
+        </div>
+    </div>
+</nav>
+{% endblock body %}

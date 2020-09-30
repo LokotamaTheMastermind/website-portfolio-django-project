@@ -1,0 +1,238 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block body_id %}id="top"{% endblock body_id %}
+
+{% block inline_css %}
+<style>
+    .font-size-1 {
+        font-size: 1.5rem !important;
+        font-weight: 300;
+    }
+
+    .font-size-2 {
+        font-size: 2rem !important;
+        font-weight: 400;
+    }
+
+    .banner {
+        padding-top: 17%;
+        padding-bottom: 17%;
+        background-image: url('{% static "shared/img/banner.jpg" %}') !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .recent-projects-banner {
+        background: url('{% static "shared/img/bg-1.jpg" %}') !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .about-banner {
+        background: url('{% static "shared/img/bg-2.jpg" %}') !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .contact-banner {
+        background-image: url('{% static "shared/img/bg-3.jpg" %}') !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .size-1 {
+        font-size: 2rem;
+    }
+
+    .padding-large {
+        padding: 10% 0 3% 0;
+    }
+
+</style>
+{% endblock inline_css %}
+
+{% block body %}
+{% include 'shared/components/navbar.html' %}
+
+<!-- Section for welcome header -->
+<header class="jumbotron-fluid banner" id="begin">
+    <div class="container mt-4">
+        <h1 class="display-4 text-center text-white">Welcome</h1>
+        <hr class="w-50 border-light" />
+        <p class="text-center font-size-1 text-white">
+            To where I post of most websites created by me
+        </p>
+    </div>
+</header>
+
+<!-- Main sections of website -->
+<main>
+
+    <!-- Section for about -->
+    <section class="container-fluid about-banner pb-7 pt-6" id="about">
+        <h3 class="font-size-2 text-center pt-5 text-white">About</h3>
+        <hr class="w-50 border-light">
+        <div class="container text-white text-center">
+            <p class="font-size-1">The following list explains most of this site already</p>
+        </div>
+        <div class="pb-3"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1 class="display-4 size-1 pb-2"><i class="fa fa-check-circle text-success"></i><span
+                            class="text-white ml-1">What is here</span></h1>
+                    <ol class="list-group">
+                        <li class="list-group-item"><i class="fa fa-check text-success fa-2x"></i> <span
+                                class="pl-3 float-lg-right">Information about websites I build</span></li>
+                        <li class="list-group-item"><i class="fa fa-check text-success fa-2x"></i> <span
+                                class="pl-3 float-lg-right">Source code or where to buy the websites I build</span></li>
+                        <li class="list-group-item"><i class="fa fa-check text-success fa-2x"></i> <span
+                                class="pl-3 float-lg-right">Made using web framework called <code>django</code></span>
+                        </li>
+                        <li class="list-group-item"><i class="fa fa-check text-success fa-2x"></i> <span
+                                class="pl-3 float-lg-right">Source code is free for modification</span></li>
+                    </ol>
+                </div>
+                <div class="col-lg-6 float-right pt-2">
+                    <h1 class="display-4 size-1"><i class="fa fa-times-circle text-danger"></i><span
+                            class="ml-1 text-white">What isn't here</span></h1>
+                    <ol class="list-group">
+                        <li class="list-group-item"><i class="fa fa-times text-danger fa-2x"></i> <span
+                                class="pl-3 float-lg-right">I don't sell websites I build here</span></li>
+                        <li class="list-group-item"><i class="fa fa-times text-danger fa-2x"></i> <span
+                                class="pl-3 float-lg-right">Place where people showcase any of their works except for
+                                me</span></li>
+                        <li class="list-group-item"><i class="fa fa-times text-danger fa-2x"></i> <span
+                                class="pl-3 float-lg-right">This site is totally made by me and I give account for all
+                                external</span><br><span class="float-lg-right">services used like pictures</span>
+                        </li>
+                        <li class="list-group-item"><i class="fa fa-times text-danger fa-2x"></i> <span
+                                class="pl-3 float-lg-right">I don't use external people works for project
+                                pictures</span></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section for recent projects -->
+    <section class="container-fluid recent-projects-banner">
+        <h3 class="font-size-2 text-center pt-5">Recent Projects</h3>
+        <hr class="w-50 border-dark mb-5" />
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <img src="{{ post.project_picture.url }}" alt="{{ post.project_name }}" class="card-img">
+                    <div class="card-body">
+                        <table class="container table table-bordered">
+                            <tr>
+                                <td><span class="decorated">Project name</span></td>
+                                <td><span>{{ post.project_name }}</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="decorated">Project description</span></td>
+                                <td><span><code>{{ post.project_description }}</code></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="decorated">Project author</span></td>
+                                <td><span>{{ post.author }}</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="decorated">Project author email</span></td>
+                                <td><span>{{ post.author_email }}</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="decorated">Extra information</span></td>
+                                <td><span><code>{{ extra_information }}</code></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="decorated">Is finished</span></td>
+                                {% if post.is_in_progress %}
+                                <td><span class="text-danger">No</span></td>
+                                {% else %}
+                                <td><span class="text-success">Yes</span></td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td><span class="no-decorated decorated">Posted at</span></td>
+                                <td><span>{{ post.posted_at }}</span></td>
+                            </tr>
+                        </table>
+                        <button class="btn btn-outline-success mt-2"><a href="{{ post.project_url }}" target="_blank"
+                                class="no-decoration posts-link-color">Source Code</a></button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Section for contact -->
+    <!-- TODO: make this section responsive -->
+    <section class="container-fluid contact-banner padding-large" id="contact">
+        <h3 class="text-center text-white display-4">Contact Developer</h3>
+        <div class="container">
+            <p class="text-center text-white lead">The following are means of you being able to contact me</p>
+        </div>
+        <hr class="border-white w-50">
+        <div class="pb-5"></div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="container ml-4">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="text-white"><i class="fa fa-phone text-info"></i> <span
+                                    class="ml-2 lead float-right">(+234)
+                                    <a href="tel:+2348054786768" class="no-decoration link-color">08054786768</a></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-white"><i class="fa fa-envelope-open"></i><span
+                                    class="ml-2 lead float-right"><a href="mailto:lokotamathemastermind2@gmail.com"
+                                        class="no-decoration link-color">lokotamathemastermind2@gmail.com</a></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-white"><i class="fab fa-github text-dark"></i><span
+                                    class="ml-2 lead float-right"><a href="https://github.com/LokotamatheMastermind/"
+                                        class="no-decoration link-color">Github
+                                        Account</a></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-white"><i class="fab fa-twitter text-primary"></i><span
+                                    class="ml-2 lead float-right"><a href="https://twitter.com/LokotamaThe"
+                                        class="link-color no-decoration">Twitter
+                                        Account</a></span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="container">
+                    <form action="#" method="POST" class="form-group">
+                        {% csrf_token %}
+                        <label for="msg-body" class="font-size-1 text-white">Message</label>
+                        <textarea class="form-control w-75 pb-4 mb-2" placeholder="Message body" required
+                            id="msg-body"></textarea>
+                        <button type="submit" class="btn btn-primary w-75">Send message<i
+                                class="fa fa-paper-plane text-white pl-2"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer section -->
+{% include 'shared/components/footer.html' %}
+{% endblock body %}

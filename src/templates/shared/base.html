@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LokotamaTheMastermind - Website Design Portfolio | {% block title %}{% endblock title %}</title>
+    <!-- Stylesheets -->
+    {% if settings %}
+    <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.css' %}">
+    {% else %}
+    <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}">
+    {% endif %}
+    <link rel="stylesheet" href="{% static 'lib/standalone/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'shared/css/style.css' %}">
+
+    <!-- Scripts -->
+    {% if settings %}
+    <script src="{% static 'lib/bootstrap/js/bootstrap.js' %}"></script>
+    {% else %}
+    <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+    {% endif %}
+</head>
+
+<body {% block body_id %}{% endblock body_id %}>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+    </style>
+    {% block inline_css %}
+    {% endblock inline_css %}
+
+    {% block body %}
+    {% endblock body %}
+</body>
+
+</html>

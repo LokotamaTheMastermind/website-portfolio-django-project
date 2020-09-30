@@ -1,0 +1,47 @@
+/*== Universal stylesheets ==*/
+
+/*= Link decoration =*/
+.link-color {
+  color: white;
+  transition-property: color, border;
+  transition-timing-function: ease-in-out;
+  transition: 0.7s;
+}
+
+.link-color:hover {
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+.posts-link-color {
+  color: rgba(19, 18, 18, 0.664);
+  transition-property: color;
+  transition-timing-function: ease-in-out;
+  transition: 0.3s;
+}
+
+.posts-link-color:hover {
+  color: white;
+}
+
+/*= Spacing =*/
+.pt-7 {
+  padding-top: 7%;
+}
+
+.pb-7 {
+  padding-bottom: 7%;
+}
+
+.pt-6 {
+  padding-top: 6%;
+}
+
+.pb-6 {
+  padding-bottom: 6%;
+}
+
+/*= Text decoration =*/
+.decorated {
+  border-bottom: 1px solid black;
+}
