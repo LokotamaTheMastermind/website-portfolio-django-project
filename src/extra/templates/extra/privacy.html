@@ -1,0 +1,64 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block inline_css %}
+<style>
+    .banner {
+        background-image: url('{% static "shared/img/bg-1.jpg" %}');
+        padding-top: 5%;
+        padding-bottom: 7%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .privacy-link-color {
+        color: grey;
+        transition-property: color, border;
+        transition-timing-function: ease-in-out;
+        transition: 0.7s;
+    }
+
+    .privacy-link-color:hover {
+        color: grey;
+        border-bottom: 1px solid grey;
+    }
+
+    * {
+        overflow: hidden;
+    }
+
+</style>
+{% endblock inline_css %}
+
+{% block title %}Privacy Policy{% endblock title %}
+
+{% block body %}
+{% include 'shared/components/navbar.html' %}
+<!-- Main content -->
+<main>
+    <!-- Privacy policy section -->
+    <section>
+        <div class="container-fluid banner">
+            <div class="container pt-1">
+                <div class="text-center">
+                    <h1 class="display-4">Privacy Policy</h1>
+                    <p class="lead">I gonna keep this short, there's only like 4 policies here</p>
+                    <hr class="border-white w-75">
+                </div>
+                <ol class="list-group">
+                    <li class="list-group-item">I use cookies for protection and for remembering sessions</li>
+                    <li class="list-group-item">I don't use or will ever use <code>sessions</code> for this site, I
+                        don't like
+                        keeping much information only one's neccessary</li>
+                    <li class="list-group-item">If you want all this you will have to agree to cookies and read <a
+                            href="{% url 'policies:terms-and-conditions' %}"
+                            class="no-decoration privacy-link-color">Terms & Conditions</a> in exchange</li>
+                    <li class="list-group-item">Forgot to say <code>contributions</code> are welcomed</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+</main>
+{% include 'shared/components/footer.html' %}
+{% endblock body %}

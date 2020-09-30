@@ -1,0 +1,55 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block title %}Terms and Conditions{% endblock title %}
+
+{% block inline_css %}
+<style>
+    .banner {
+        background-image: url('{% static "shared/img/bg-2.jpg" %}');
+        padding-top: 5%;
+        padding-bottom: 10%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    * {
+        overflow: hidden;
+    }
+
+</style>
+{% endblock inline_css %}
+
+{% block body %}
+{% include 'shared/components/navbar.html' %}
+
+<main>
+    <section>
+        <div class="container-fluid banner">
+            <div class="container pt-2">
+                <div class="text-center text-white">
+                    <h1 class="display-4">Terms and Conditions</h1>
+                    <p class="lead">I gonna keep this short, there's only like 3 terms for you to do before using this
+                        site</p>
+                    <hr class="border-white w-75">
+                </div>
+                <div class="mt-1"></div>
+                <ol class="list-group">
+                    <li class="list-group-item">Turning on browser cookies <code><abbr title="because">cus</abbr></code>
+                        I don't use them for harm, visit <a href="{% url 'policies:privacy-policy' %}"
+                            class="no-decoration">Privacy Policy</a> to see what I do with cookies
+                    </li>
+                    <li class="list-group-item">If you <code><abbr title="want to">wanna</abbr></code> contribute,
+                        please don't use the source code for claiming this site, I will remove all things that can make
+                        me lose being owner of this site</li>
+                    <li class="list-group-item">Try not to visit route <code>/admin/</code>. Administrators only. No can
+                        guess password</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% include 'shared/components/footer.html' %}
+{% endblock body %}
