@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator
+from django.conf import settings
 
 
 # Website Project model
@@ -27,3 +28,14 @@ class Project(models.Model):
 
     def __str__(self) -> str:
         return self.project_name
+
+    def read_file_content(self):
+        import os
+
+        PHYSICAL_PATH = f"{os.path.join(os.path.dirname(settings.BASE_DIR), 'cdn')}/{self.extra_information.url}".replace(
+            '//', '/').replace('\\', '/')
+        with open(f"{PHYSICAL_PATH}") as extra_info_file:
+            content = extra_info_file.readlines()
+            for i in content:
+                line = i.strip()
+                return line

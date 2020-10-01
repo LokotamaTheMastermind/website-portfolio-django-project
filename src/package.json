@@ -1,15 +1,16 @@
 {
-  "name": "website-development-portfolio",
+  "name": "lokotamathemastermind-website-portfolio",
   "version": "1.0.0",
   "description": "Portfolio site made with Django for showcasing websites developed by me",
   "main": "manage.py",
   "scripts": {
-    "test": "python manage.py testserver",
+    "test:server": "python manage.py testserver",
+    "test:project:main": "python manage.py test main/",
     "start": "python manage.py runserver",
     "db:migrate": "python manage.py makemigrations && python manage.py migrate",
     "collectstatic": "python manage.py collectstatic",
     "shell": "python manage.py shell",
-    "repo:push": "git push origin master"
+    "repo:push": "git pull origin master && git push origin master"
   },
   "keywords": [
     "django",

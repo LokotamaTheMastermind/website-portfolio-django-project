@@ -4,7 +4,7 @@ __pycache__/
 # Django db stuff
 migrations/
 
-# Db file
+# Database file
 *.sqlite3
 
 # Static root folder made by `python manage.py collectstatic command`

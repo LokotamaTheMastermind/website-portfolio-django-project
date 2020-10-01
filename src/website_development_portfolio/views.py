@@ -1,17 +1,55 @@
 from django.shortcuts import render
 from django.conf import settings
 from main.models import Project
-from .utils import read_file_content
+from django.core.mail import send_mail
+from django.contrib import messages
 
 
 def index(request):
+    if request.method == "POST":
+        import requests
+        from requests.exceptions import ConnectionError
+        try:
+            url = requests.get('https://www.google.com', timeout=3)
+            status = url.status_code
+        except ConnectionError:
+            status = "404"
+
+        if status == "200":
+            subject = request.POST.get('msg-subject')
+            message = request.POST.get('msg-body')
+            sender = request.POST.get('sender-name')
+
+            proper_msg = """
+            Subject = {}
+
+            Body = {}
+
+            Sent by {}
+
+            Mailing service by `Website Portfolio` made by me
+            """.format(subject, message, sender)
+
+            send_mail(str(subject), str(proper_msg), 'lokotamathemastermind2@gmail.com',
+                      ['lokotamathemastermind2@gmail.com'], fail_silently=False)
+
+            messages.success(
+                request, 'Successful delivered mail, wait for response of the developer, thank you')
+
+        elif status == "404":
+            messages.error(
+                request, 'Sorry not connected to internet can\'t send email')
+
     latest_projects = Project.objects.all().order_by('-posted_at')[:4]
 
-    file_content = read_file_content(latest_projects)
+    if not latest_projects:
+        empty = True
+    elif latest_projects:
+        empty = False
 
     context = {
         'settings': settings.DEBUG,
         'posts': latest_projects,
-        'extra_information': file_content
+        'empty': empty
     }
     return render(request, 'landing/index.html', context)

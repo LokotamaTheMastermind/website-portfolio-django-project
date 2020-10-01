@@ -1,6 +1,16 @@
-/*== Universal stylesheets ==*/
+/*===> Universal stylesheets <===*/
 
-/*= Link decoration =*/
+/*==> Main document <==*/
+html {
+  scroll-behavior: smooth;
+}
+
+/*==> Body styles <==*/
+body {
+  overflow-x: hidden;
+}
+
+/*==> Link decoration <==*/
 .link-color {
   color: white;
   transition-property: color, border;
@@ -24,7 +34,7 @@
   color: white;
 }
 
-/*= Spacing =*/
+/*==> Spacing <==*/
 .pt-7 {
   padding-top: 7%;
 }
@@ -41,7 +51,11 @@
   padding-bottom: 6%;
 }
 
-/*= Text decoration =*/
+.pb-13 {
+  padding-bottom: 13.3% !important;
+}
+
+/*==> Text decoration <==*/
 .decorated {
   border-bottom: 1px solid black;
 }

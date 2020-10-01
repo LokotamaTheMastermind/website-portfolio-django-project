@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="{% static 'lib/standalone/font-awesome.css' %}">
     <link rel="stylesheet" href="{% static 'shared/css/style.css' %}">
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'shared/img/logo.png' %}" type="image/x-icon">
+
     <!-- Scripts -->
     <script src="{% static 'lib/standalone/jquery.js' %}"></script>
     {% if settings %}
@@ -26,16 +29,6 @@
 </head>
 
 <body {% block body_id %}{% endblock body_id %}>
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            overflow-x: hidden;
-        }
-
-    </style>
     {% block inline_css %}
     {% endblock inline_css %}
 

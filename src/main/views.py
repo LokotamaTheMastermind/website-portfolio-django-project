@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .models import Project
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
-from website_development_portfolio.utils import read_file_content
 
 
 def projects(request):
@@ -11,8 +10,6 @@ def projects(request):
     paginator = Paginator(project_list, 4)
     number_of_results = paginator.count
 
-    file_content = read_file_content(project_list)
-
     try:
         projects = paginator.page(page)
     except PageNotAnInteger:
@@ -20,9 +17,14 @@ def projects(request):
     except EmptyPage:
         projects = paginator.page(paginator.num_pages)
 
+    if not project_list:
+        empty = True
+    elif project_list:
+        empty = False
+
     context = {
         'projects': projects,
         'num_of_results': number_of_results,
-        'extra_information': file_content
+        'empty': empty
     }
     return render(request, 'main/index.html', context)

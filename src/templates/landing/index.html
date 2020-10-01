@@ -32,6 +32,7 @@
         background-size: cover;
         background-position: center;
         padding-top: 4%;
+        padding-bottom: 4%;
     }
 
     .about-banner {
@@ -55,12 +56,44 @@
     .padding-large {
         padding: 10% 0 3% 0;
     }
-
 </style>
 {% endblock inline_css %}
 
 {% block body %}
 {% include 'shared/components/navbar.html' %}
+
+{% if messages %}
+<!-- Messages section -->
+<section>
+    <div class="card">
+        <span class="card-body container">
+            <p class="lead">You have some messages click on the button to view them <button
+                    class="btn btn-primary float-right" data-toggle="modal" data-target="#messagesModal">View
+                    messages</button></p>
+        </span>
+    </div>
+</section>
+
+<!-- Message modal -->
+<div class="modal fade" id="messagesModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Current messages</div>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                {% for message in messages %}
+                <code>{{ message }}</code>
+                {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">I'm done reading</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
 
 <!-- Section for welcome header -->
 <header class="jumbotron-fluid banner" id="begin">
@@ -106,15 +139,6 @@
                             class="ml-1 text-white">What isn't here</span></h1>
                     <ol class="list-group">
                         <li class="list-group-item"><i class="fa fa-times text-danger fa-2x"></i> <span
-                                class="pl-3 float-lg-right">I don't sell websites I build here</span></li>
-                        <li class="list-group-item"><i class="fa fa-times text-danger fa-2x"></i> <span
-                                class="pl-3 float-lg-right">Place where people showcase any of their works except for
-                                me</span></li>
-                        <li class="list-group-item"><i class="fa fa-times text-danger fa-2x"></i> <span
-                                class="pl-3 float-lg-right">This site is totally made by me and I give account for all
-                                external</span><br><span class="float-lg-right">services used like pictures</span>
-                        </li>
-                        <li class="list-group-item"><i class="fa fa-times text-danger fa-2x"></i> <span
                                 class="pl-3 float-lg-right">I don't use external people works for project
                                 pictures</span></li>
                     </ol>
@@ -126,12 +150,14 @@
     <!-- Section for recent projects -->
     <section class="container-fluid recent-projects-banner" id="projects">
         <h3 class="font-size-2 text-center pt-5">Recent Projects</h3>
-        <hr class="w-50 border-dark mb-5" />
+        <hr class="w-50 border-dark mb-4" />
+        {% if not empty %}
         <div class="row">
             {% for post in posts %}
             <div class="col-lg-6 mb-4">
                 <div class="card">
-                    <img src="{{ post.project_picture.url }}" alt="{{ post.project_name }}" class="card-img">
+                    <a href="{{ post.project_picture.url }}" target="_blank"><img src="{{ post.project_picture.url }}"
+                            alt="{{ post.project_name }}" class="card-img"></a>
                     <div class="card-body">
                         <table class="container table table-bordered">
                             <tr>
@@ -152,7 +178,7 @@
                             </tr>
                             <tr>
                                 <td><span class="decorated">Extra information</span></td>
-                                <td><span><code>{{ extra_information }}</code></span></td>
+                                <td><span><code>{{ post.read_file_content }}</code></span></td>
                             </tr>
                             <tr>
                                 <td><span class="decorated">Is finished</span></td>
@@ -167,13 +193,20 @@
                                 <td><span>{{ post.posted_at }}</span></td>
                             </tr>
                         </table>
-                        <button class="btn btn-outline-success mt-2"><a href="{{ post.project_url }}" target="_blank"
-                                class="no-decoration posts-link-color">Source Code</a></button>
+                        <a href="{{ post.project_url }}" target="_blank" class="no-decoration btn-link btn">Source
+                            Code</a>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
+        {% else %}
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="lead font-size-2 text-center"><code>No projects posted yet!</code></h4>
+            </div>
+        </div>
+        {% endif %}
     </section>
 
     <!-- Section for contact -->
@@ -219,11 +252,17 @@
             </div>
             <div class="col-lg-6">
                 <div class="container">
-                    <form action="#" method="POST" class="form-group">
+                    <form action="/" method="POST" class="form-group">
                         {% csrf_token %}
+                        <label class="font-size-1 text-white" for="sender-name">Sender name</label>
+                        <input type="text" name="sender-name" id="sender-name" required placeholder="John Doe"
+                            class="form-control w-75">
+                        <label for="msg-subject" class="font-size-1 text-white">Message subject</label>
+                        <input type="text" name="msg-subject" id="msg-subject" required
+                            placeholder="Mind for cup of tea" class="form-control w-75">
                         <label for="msg-body" class="font-size-1 text-white">Message</label>
-                        <textarea class="form-control w-75 pb-4 mb-2" placeholder="Message body" required
-                            id="msg-body"></textarea>
+                        <textarea class="form-control w-75 pb-4 mb-2" placeholder="Message body" required id="msg-body"
+                            name="msg-body"></textarea>
                         <button type="submit" class="btn btn-primary w-75">Send message<i
                                 class="fa fa-paper-plane text-white pl-2"></i></button>
                     </form>
