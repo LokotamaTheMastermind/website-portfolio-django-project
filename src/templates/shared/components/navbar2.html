@@ -1,0 +1,63 @@
+{% load static %}
+
+{% block inline_css %}
+<style>
+    .no-decoration {
+        text-decoration: none !important;
+    }
+
+    .animated-link {
+        transition-timing-function: ease-in-out;
+        transition-property: color, color;
+        transition: .5s;
+    }
+
+    .animated-link:hover {
+        border-bottom: 1px solid #ffffff !important;
+    }
+
+    .banner-header {
+        border-bottom: solid #ffffff !important;
+    }
+</style>
+{% endblock inline_css %}
+
+{% block body %}
+<!-- TODO: make this section responsive -->
+
+<!-- Navbar component -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark container-fluid sticky-top fixed-top">
+    <div class="container">
+        <!-- Site logo -->
+        <h3 class="navbar-brand banner-header"><img src="{% static 'shared/img/logo.png' %}" alt="Website Logo"
+                width="30" height="30" class="img-thumbnail mr-2"><a href="/#top"
+                class="no-decoration text-white text-sm-center">My
+                Portfolio</a></h3>
+        <!-- Collasped button on devices whose screen resolution is below laptops -->
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#homeNavbar"
+            aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Main navbar -->
+        <div class="navbar-collapse collaspe justify-content-center" id="homeNavbar">
+
+            <!-- Center links -->
+            <div class="float-right">
+                <a href="/#begin" class="text-white no-decoration animated-link mr-4">Home</a>
+                <a href="/#about" class="text-white no-decoration animated-link mr-4">About</a>
+                <a href="/#projects" class="text-white no-decoration animated-link mr-4">Projects</a>
+                <a href="/#contact" class="text-white no-decoration animated-link">Contact</a>
+            </div>
+
+        </div>
+        <!-- Right-aligned buttons -->
+        <div class="dropdown ml-1">
+            <button class="btn btn-outline-success" type="button"><i class="fab fa-github text-black-50"></i> Source
+                Code</button>&nbsp;
+            <button class="btn btn-outline-primary" type="button"><i class="fa fa-images text-white"></i>
+                <a href="{% url 'main:project-list' %}" class="btn-link no-decoration">Projects List</a></button>
+        </div>
+
+</nav>
+{% endblock body %}
