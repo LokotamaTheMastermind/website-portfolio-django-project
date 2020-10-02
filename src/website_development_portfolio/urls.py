@@ -12,7 +12,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='landing'),
     path('projects/', include('main.urls')),
-    path('policies/', include('extra.urls'))
+    path('policies/', include('extra.urls')),
+    path('management/', include('management.urls'))
 ]
 
 # Static and media files routing

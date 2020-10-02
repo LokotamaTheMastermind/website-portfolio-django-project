@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     # Installed applications
     'main',
     'extra',
+    'management',
 
     # 3rd party libraries
     'django_cleanup',
@@ -127,3 +128,15 @@ MEDIA_URL = '/media/'
 
 # Physical server path for media files
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "cdn", "media")
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_USE_TLS = True
+
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = 'lokotamathemastermind2@gmail.com'
+
+EMAIL_HOST_PASSWORD = 'Christino_1_2_3'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

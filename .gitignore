@@ -12,3 +12,6 @@ cdn/
 
 # VSCode configuration settings
 .vscode/
+
+# Secret files for storage
+*.secret

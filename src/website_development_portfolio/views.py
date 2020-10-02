@@ -27,11 +27,11 @@ def index(request):
 
             Sent by {}
 
-            Mailing service by `Website Portfolio` made by me
+            Mailing service by `Website Portfolio` made by LokotamaTheMastermind
             """.format(subject, message, sender)
 
-            send_mail(str(subject), str(proper_msg), 'lokotamathemastermind2@gmail.com',
-                      ['lokotamathemastermind2@gmail.com'], fail_silently=False)
+            send_mail(str(subject), str(proper_msg), settings.EMAIL_HOST_USER,
+                      ['lokotamathemastermind.portfolio@gmail.com'], fail_silently=False)
 
             messages.success(
                 request, 'Successful delivered mail, wait for response of the developer, thank you')
