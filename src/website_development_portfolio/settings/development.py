@@ -1,5 +1,6 @@
-from website_development_portfolio.settings.common import *
 from decouple import config
+
+TEMPLATES
 
 DEBUG = True
 
