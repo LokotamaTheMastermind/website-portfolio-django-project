@@ -15,3 +15,5 @@ cdn/
 
 # Secret files for storage
 *.secret
+
+website-portfolio/

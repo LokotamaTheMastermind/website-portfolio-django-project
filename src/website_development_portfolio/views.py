@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
 from main.models import Project
-from django.core.mail import send_mail
 from django.contrib import messages
 
 
@@ -9,6 +8,8 @@ def index(request):
     if request.method == "POST":
         import requests
         from requests.exceptions import ConnectionError
+        import smtplib
+
         try:
             url = requests.get('https://www.google.com', timeout=3)
             status = url.status_code
@@ -30,8 +31,18 @@ def index(request):
             Mailing service by `Website Portfolio` made by LokotamaTheMastermind
             """.format(subject, message, sender)
 
-            send_mail(str(subject), str(proper_msg), settings.EMAIL_HOST_USER,
-                      ['lokotamathemastermind.portfolio@gmail.com'], fail_silently=False)
+            email = smtplib.SMTP(settings.EMAIL_HOST, settings.EMAIL_PORT)
+
+            email.starttls()
+
+            email.login(settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD)
+
+            email.login(settings.EMAIL_HOST_USER,
+                        settings.EMAIL_HOST_PASSWORD)
+
+            email.sendmail(settings.EMAIL_HOST_USER,
+                           'lokotamathemastermind.portfolio@gmail.com', proper_msg)
+            email.quit()
 
             messages.success(
                 request, 'Successful delivered mail, wait for response of the developer, thank you')
