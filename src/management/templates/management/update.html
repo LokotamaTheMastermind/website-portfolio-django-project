@@ -1,0 +1,79 @@
+{% extends 'shared/base.html' %}
+
+{% block title %}Management{% endblock title %}
+
+{% block body %}
+<main>
+    <section class="container-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Update Post</h1>
+            <hr>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="lead">{{ form.project_name.label }}</div>
+                        <div class="pb-1"></div>
+                        {{ form.project_name }}
+                        <div class="pb-1"></div>
+
+                        <div class="lead">{{ form.project_url.label }}</div>
+                        <div class="pb-1"></div>
+                        {{ form.project_url }}
+                        <div class="pb-1"></div>
+
+                        <div class="lead">{{ form.author.label }}</div>
+                        <div class="pb-1"></div>
+                        {{ form.author }}
+                        <div class="pb-1"></div>
+
+                        <div class="lead">{{ form.author_email.label }}</div>
+                        <div class="pb-1"></div>
+                        {{ form.author_email }}
+                        <div class="pb-1"></div>
+
+                        <div class="lead">{{ form.is_in_progress.label }}</div>
+                        <div class="pb-1"></div>
+                        <div class="card">
+                            <div class="card-body">{{ form.is_in_progess }} <span class="text-info">Are you done with
+                                    the project</span></div>
+                        </div>
+                        <div class="pb-1"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-primary w-100 mt-2 mb-2"><i
+                                        class="fa fa-plus-circle"></i> Create</button>
+                            </div>
+                            <div class="col-6">
+                                <button type="reset" class="btn btn-warning w-100 mt-2 mb-2"><i
+                                        class="fa fa-recycle"></i> Reset</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <span class="lead">{{ form.project_picture.label }}</span>
+                        <div class="pb-1"></div>
+                        <div class="custom-file">
+                            {{ form.project_picture }}
+                            <label class="custom-file-label">Select only 1 file</label>
+                        </div>
+                        <div class="pb-1"></div>
+
+                        <span class="lead">{{ form.extra_information.label }}</span>
+                        <div class="pb-1"></div>
+                        <div class="custom-file">
+                            {{ form.extra_information }}
+                            <label class="custom-file-label">Optional, select only 1 file</label>
+                        </div>
+                        <div class="pb-1"></div>
+
+                        <div class="lead">{{ form.project_description.label }}</div>
+                        {{ form.project_description }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+{% endblock body %}
