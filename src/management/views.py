@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .forms import ProjectForm
 from main.models import Project
@@ -21,6 +22,7 @@ def create(request):
         form = ProjectForm(request.POST or None, request.FILES or None)
         if form.is_valid:
             form.save()
+            return HttpResponseRedirect('/management/')
 
     context = {
         'form': form
@@ -28,20 +30,28 @@ def create(request):
     return render(request, 'management/create.html', context)
 
 
+@login_required
 def delete(request, id):
-    deleted = False
-    project_id = Project.objects.get(id=id)
+    project = Project.objects.get(id=id)
+    project.delete()
+
+    return HttpResponseRedirect('/management/')
+
+
+@login_required
+def update(request, id):
+    project = Project.objects.get(id=id)
+    form = ProjectForm(request.POST or None,
+                       request.FILES or None, instance=project)
 
     if request.method == "POST":
-        project_id.delete()
-        deleted = True
+        form = ProjectForm(request.POST or None,
+                           request.FILES or None, instance=project)
+        if form.is_valid:
+            form.save()
+            return HttpResponseRedirect('/admin/')
 
     context = {
-        'deleted': deleted,
-        'item': project_id
+        'form': form
     }
-    return render(request, 'management/delete.html', context)
-
-
-def update(request, id):
-    context = {}
+    return render(request, 'management/update.html', context)
