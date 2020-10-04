@@ -14,8 +14,16 @@ def index(request):
 
 @login_required
 def create(request):
-    form = ProjectForm()
+    form = ProjectForm(request.POST or None)
     context = {
         'form': form
     }
     return render(request, 'management/create.html', context)
+
+
+def delete(request):
+    form = ProjectForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'management/delete.html', context)

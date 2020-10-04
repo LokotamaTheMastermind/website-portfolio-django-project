@@ -3,26 +3,19 @@ Shared settings
 """
 
 import os
-import environ
+from pathlib import Path
 
-project_root = environ.Path(__file__) - 4
-env = environ.Env()
-environ.Env.read_env()
 
-# Main folder for source code
-BASE_DIR = project_root()
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-# DEBUG is default to `True` meaning development server
-DEBUG = env.bool('DEBUG', default=True)
 
-if DEBUG:
-    SECRET_KEY = env.str(
-        'SECRET_KEY', default='(758q2z2l+47@s4ffq+2t@wqvr*@zoi1^7r8+_fh^9)&3v2cnz')
-    ALLOWED_HOSTS = []
-elif not DEBUG:
-    from website_development_portfolio.settings.production import PRODUCTION_HOSTS
-    SECRET_KEY = os.environ['SECRET_KEY']
-    ALLOWED_HOSTS = PRODUCTION_HOSTS
+DEBUG = True
+
+
+SECRET_KEY = '@poqi=vyd0ls_kg_jsnzy@#o8#e6ut)$=@65n4b2skz1_by)y$'
+
+
+ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
@@ -78,9 +71,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'website_development_portfolio.wsgi.application'
 
 
-database_root = project_root()
-
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -88,7 +78,7 @@ if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'development.sqlite3'),
+            'NAME': BASE_DIR / 'development.sqlite3',
         }
     }
 else:
@@ -130,13 +120,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-public_root = project_root.path('public/')
-
 # Virtual website path for static files
-STATIC_URL = env.str('STATIC_URL', default='/static/')
+STATIC_URL = '/static/'
+
+PUBLIC_ROOT = os.path.join(BASE_DIR, 'public')
 
 # Physical server path for static files
-STATIC_ROOT = public_root('staticfiles')
+STATIC_ROOT = os.path.join(PUBLIC_ROOT, 'staticfiles')
 
 # Static files directory for project
 STATICFILES_DIRS = [
@@ -144,10 +134,10 @@ STATICFILES_DIRS = [
 ]
 
 # Virtual website path for media files
-MEDIA_URL = env.str('MEDIA_URL', default='/media/')
+MEDIA_URL = '/media/'
 
 # Physical server path for media files
-MEDIA_ROOT = public_root('media')
+MEDIA_ROOT = os.path.join(PUBLIC_ROOT, 'media')
 
 # Email Section
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -158,6 +148,6 @@ EMAIL_USE_TLS = True
 
 EMAIL_PORT = 587
 
-EMAIL_HOST_USER = ''
+EMAIL_HOST_USER = 'lokotamathemastermind2@gmail.com'
 
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'Christino_1_2_3'

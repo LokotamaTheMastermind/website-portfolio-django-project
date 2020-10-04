@@ -6,7 +6,19 @@ from django.dispatch import receiver
 @receiver(post_save, sender=Project)
 def post_new_project(sender, instance, created, **kwargs):
     import tweepy
-    if created:
+    import requests
+    from requests.exceptions import ConnectionError
+
+    url = 'https://www.google.com/'
+
+    try:
+        data = requests.get(url, timeout=3)
+        status = data.status_code
+    except ConnectionError:
+        status = "404"
+
+    if created and status == "200":
+        # Needed authenticate keys
         twitter_auth_keys = {
             "consumer_key": "xhV18SyvvK5UINfEEsuNEfSU8",
             "consumer_secret": "K14bOaui7tcCgZifSrohXLg1GvMuUDykBrPdrYkSeuAUw6oPCM",

@@ -6,7 +6,33 @@
 <main>
     <section class="container-fluid">
         <div class="container">
-            <h1 class="display-4">Management Panel</h1>
+            <h1 class="display-4 text-center">Create</h1>
+            <hr>
+            <form action="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="lead">{{ form.project_name.label }}</div>
+                        {{ form.project_name }}
+
+                        <div class="lead">{{ form.project_url.label }}</div>
+                        {{ form.project_url }}
+
+                        <div class="lead">{{ form.author.label }}</div>
+                        {{ form.author }}
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="lead">{{ form.project_picture.label }}</div>
+                        {{ form.project_picture }}
+
+                        <div class="lead">{{ form.project_description.label }}</div>
+                        {{ form.project_description }}
+
+                        <div class="lead">{{ form.author_email.label }}</div>
+                        {{ form.author_email }}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
         </div>
     </section>
 </main>
