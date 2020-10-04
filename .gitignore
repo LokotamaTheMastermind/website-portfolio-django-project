@@ -16,6 +16,11 @@ cdn/
 # Secret files for storage
 *.secret
 
+# Virtualenv folder
 website-portfolio/
 
+# Production environment variables
 *.prod
+
+# Public compiled folder with command `python manage.py collectstatic`
+public/
