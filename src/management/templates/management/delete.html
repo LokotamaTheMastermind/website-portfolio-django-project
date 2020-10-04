@@ -1,0 +1,74 @@
+{% extends 'shared/base.html' %}
+
+{% block body %}
+<main>
+    <section class="container-fluid">
+        <div class="container">
+            <div class="card bg-info mt-2 text-white">
+                <div class="card-body">
+                    <div class="card-text">
+                        <span>The query of <code>{{ item.project_name }}</code> just got deleted</span>
+                    </div>
+                </div>
+            </div>
+            <h1 class="display-4 text-center">Confirm Delete</h1>
+            <hr>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-4">
+                        <p>Are you sure you wanna delete this query with information of</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card-body">
+                            <table class="container table table-bordered">
+                                <tr>
+                                    <td><span class="decorated">Project name</span></td>
+                                    <td><span>{{ item.project_name }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="decorated">Project description</span></td>
+                                    <td><span><code>{{ item.project_description }}</code></span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="decorated">Project author</span></td>
+                                    <td><span>{{ item.author }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="decorated">Project author email</span></td>
+                                    <td><span>{{ item.author_email }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="decorated">Extra information</span></td>
+                                    <td><span><code>{{ item.read_file_content }}</code></span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="decorated">Is finished</span></td>
+                                    {% if item.is_in_progress %}
+                                    <td><span class="text-danger">No</span></td>
+                                    {% else %}
+                                    <td><span class="text-success">Yes</span></td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <td><span class="no-decorated decorated">Posted at</span></td>
+                                    <td><span>{{ item.posted_at }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="{{ item.project_url }}" target="_blank"
+                                            class="no-decoration btn-link btn">Source
+                                            Code</a></td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <button type="submit" class="btn btn-success">Confirm</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+{% endblock body %}

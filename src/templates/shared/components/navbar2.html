@@ -41,10 +41,11 @@
 
         <!-- Right-aligned buttons -->
         <div class="dropdown ml-1">
-            <button class="btn btn-outline-success" type="button"><i class="fa fa-plus"></i> Create</button>&nbsp;
-            <a href="{% url 'main:project-list' %}" class="btn-link no-decoration"><button
-                    class="btn btn-outline-danger" type="button"><i class="fa fa-trash"></i>
-                    Delete</button></a>
+            <a href="{% url 'management:management-create' %}"><button class="btn btn-outline-success" type="button"><i
+                        class="fa fa-plus"></i> Create</button></a>
+            <a href="{% url 'management:management-view' %}" class="btn-link no-decoration"><button
+                    class="btn btn-outline-primary" type="button"><i class="fa fa-eye"></i>
+                    View</button></a>
         </div>
 
 </nav>
