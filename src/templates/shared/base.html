@@ -4,27 +4,28 @@
 <html lang="en-US">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=7">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta name="keywords" content="portfolio website LokotamaTheMastermind github GitHub showcase">
+    <!-- META content -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="keywords" content="portfolio website LokotamaTheMastermind github GitHub showcase" />
     <meta name="description"
-        content="This is a site I built for developers to showcase their skills in making websites">
-    <meta name="author" content="LokotamaTheMastermind">
+        content="This is a site I built for developers to showcase their skills in making websites" />
+    <meta name="author" content="LokotamaTheMastermind" />
     <title>LokotamaTheMastermind - Website Design Portfolio | {% block title %}{% endblock title %}</title>
     <!-- Stylesheets -->
     {% if settings %}
-    <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.css' %}" />
     {% else %}
-    <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" />
     {% endif %}
-    <link rel="stylesheet" href="{% static 'lib/standalone/font-awesome.css' %}">
-    <link rel="stylesheet" href="{% static 'shared/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/standalone/font-awesome.css' %}" />
+    <link rel="stylesheet" href="{% static 'shared/css/style.css' %}" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{% static 'shared/img/logo.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'shared/img/logo.png' %}" type="image/x-icon" />
 
     <!-- Scripts -->
     <script src="{% static 'lib/standalone/jquery.js' %}"></script>
@@ -33,7 +34,7 @@
     {% else %}
     <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
     {% endif %}
-    <script src="{% static 'shared/js/base.js' %}"></script>
+    <!-- <script src="{% static 'shared/js/base.js' %}"></script> -->
 
     {% block extra_js %}
     {% endblock extra_js %}

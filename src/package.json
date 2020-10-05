@@ -6,15 +6,16 @@
   "scripts": {
     "test:server": "python manage.py testserver",
     "test:project:main": "python manage.py test main/",
-    "start": "python manage.py runserver",
+    "start": "python manage.py runserver 3000",
     "db:migrate": "python manage.py makemigrations && python manage.py migrate",
-    "collectstatic": "python manage.py collectstatic",
+    "collectstatic": "python manage.py collectstatic --noinput",
     "shell": "python manage.py shell",
     "repo:push": "git pull origin master && git push origin master",
     "repo:remote": "git remote -v",
     "createadmin": "python manage.py createsuperuser --user admin --email admin@example.com",
     "db:fresh": "del development.sqlite3 && npm run db:migrate && npm run createadmin",
-    "logging:directory": "dir > logs/directories.log"
+    "logging:directory": "dir > logs/directories.log",
+    "setup": "npm run db:fresh && npm run logging:directory && npm run collectstatic && npm run start"
   },
   "keywords": [
     "django",

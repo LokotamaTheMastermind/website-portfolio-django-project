@@ -3,11 +3,18 @@
 {% block title %}Management{% endblock title %}
 
 {% block body %}
+<!-- Main content -->
 <main>
+    <!-- Update form section -->
     <section class="container-fluid">
         <div class="container">
+            <!-- Header -->
             <h1 class="display-4 text-center">Update Post</h1>
-            <hr>
+
+            <!-- Divider -->
+            <hr class="border-dark w-50">
+
+            <!-- Update form -->
             <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row">
@@ -47,6 +54,12 @@
                             <div class="col-6">
                                 <button type="reset" class="btn btn-warning w-100 mt-2 mb-2"><i
                                         class="fa fa-recycle"></i> Reset</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="text-center mt-1"><a href="{% url 'management:management-view' %}"
+                                        class="btn-link">&leftarrow; Go to the dashboard</a></p>
                             </div>
                         </div>
                     </div>

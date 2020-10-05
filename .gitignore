@@ -27,3 +27,6 @@ pics/
 
 # ---> Log folder
 logs/
+
+# ---> Node modules
+node_modules/

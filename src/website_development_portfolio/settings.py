@@ -17,7 +17,11 @@ elif not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.vercel.app'
+]
 
 
 INSTALLED_APPS = [
@@ -37,6 +41,7 @@ INSTALLED_APPS = [
     # 3rd party libraries
     'django_cleanup',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -73,9 +78,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'website_development_portfolio.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
 if DEBUG:
     DATABASES = {
         'default': {
@@ -84,10 +86,9 @@ if DEBUG:
         }
     }
 elif not DEBUG:
-    DATABASE = {}
+    # Look for database adaptor
+    DATABASES = {}
 
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -105,56 +106,59 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
+
 
 TIME_ZONE = 'UTC'
 
+
 USE_I18N = True
 
+
 USE_L10N = True
+
 
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-# Virtual website path for static files
 STATIC_URL = '/static/'
+
 
 PUBLIC_ROOT = os.path.join(BASE_DIR, 'public')
 
-# Physical server path for static files
+
 STATIC_ROOT = os.path.join(PUBLIC_ROOT, 'staticfiles')
 
-# Static files directory for project
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-# Virtual website path for media files
-MEDIA_URL = '/media/'
 
-# Physical server path for media files
+MEDIA_URL = '/media/'  # Website path for media files
+
+
 MEDIA_ROOT = os.path.join(PUBLIC_ROOT, 'media')
 
-# Email Section
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 
 EMAIL_HOST = 'smtp.gmail.com'
 
+
 EMAIL_USE_TLS = True
 
+
 EMAIL_PORT = 587
+
 
 if DEBUG:
     EMAIL_HOST_USER = config('EMAIL_ID')
     EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 elif not DEBUG:
-    EMAIL_HOST_USER = os.environ['EMAIL_ID']
+    EMAIL_HOST_USER = os.environ['EMAIl_ID']
     EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASSWORD']
+
 
 LOGIN_URL = '/admin/'
