@@ -1,0 +1,31 @@
+{% extends 'shared/base.html' %}
+
+{% block inline_css %}
+<style>
+    .divider {
+        border-right: 1px solid white;
+    }
+</style>
+{% endblock inline_css %}
+
+{% block body %}
+
+<!-- Footer component -->
+<footer class="container-fluid bg-dark text-white pt-3 pb-3 fixed-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <span class="pl-5"><span class="font-weight-bold">&copy;</span> Copyright 2020
+                    <code>LokotamaTheMastermind</code></span>
+            </div>
+            <div class="col-6">
+                <span class="float-right mr-5"><a href="{% url 'policies:terms-and-conditions' %}"
+                        class="no-decoration link-color">Terms & Conditions</a><span class="divider ml-3"></span><a
+                        href="{% url 'policies:privacy-policy' %}" class="ml-3 no-decoration link-color">Privacy
+                        Policy</a></span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endblock body %}
