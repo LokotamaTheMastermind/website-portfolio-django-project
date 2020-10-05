@@ -33,14 +33,9 @@
                 width="30" height="30" class="img-thumbnail mr-2"><a href="/#top"
                 class="no-decoration text-white text-sm-center">My
                 Portfolio</a></h3>
-        <!-- Collasped button on devices whose screen resolution is below laptops -->
-        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#homeNavbar"
-            aria-expanded="false">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
         <!-- Main navbar -->
-        <div class="navbar-collapse collaspe justify-content-center" id="homeNavbar">
+        <div class="navbar-collapse collaspe justify-content-center">
 
             <!-- Center links -->
             <div class="float-right">
@@ -53,8 +48,10 @@
         </div>
         <!-- Right-aligned buttons -->
         <div class="dropdown ml-1">
-            <a href="#"><button class="btn btn-outline-success" type="button"><i
-                        class="fab fa-github text-black-50"></i> Source Code</button></a>
+            <a href="https://github.com/LokotamaTheMastermind/website-portfolio-django-project.git"
+                target="_blank"><button class="btn btn-outline-success" type="button"><i
+                        class="fab fa-github text-black-50"></i> Source
+                    Code</button></a>
             <a href="{% url 'main:project-list' %}"><button class="btn btn-outline-primary" type="button"><i
                         class="fa fa-images text-white"></i> Projects List</button></a>
             {% if request.user.is_authenticated %}

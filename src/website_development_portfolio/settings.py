@@ -1,9 +1,8 @@
-"""
-Shared settings
-"""
+""" Project Settings """
 
 import os
 from pathlib import Path
+from decouple import config
 
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -12,7 +11,10 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 DEBUG = True
 
 
-SECRET_KEY = '@poqi=vyd0ls_kg_jsnzy@#o8#e6ut)$=@65n4b2skz1_by)y$'
+if DEBUG:
+    SECRET_KEY = config('SECRET_KEY')
+elif not DEBUG:
+    SECRET_KEY = os.environ['SECRET_KEY']
 
 
 ALLOWED_HOSTS = []
@@ -81,7 +83,7 @@ if DEBUG:
             'NAME': BASE_DIR / 'development.sqlite3',
         }
     }
-else:
+elif not DEBUG:
     DATABASE = {}
 
 # Password validation
@@ -148,6 +150,11 @@ EMAIL_USE_TLS = True
 
 EMAIL_PORT = 587
 
-EMAIL_HOST_USER = 'lokotamathemastermind2@gmail.com'
+if DEBUG:
+    EMAIL_HOST_USER = config('EMAIL_ID')
+    EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
+elif not DEBUG:
+    EMAIL_HOST_USER = os.environ['EMAIL_ID']
+    EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASSWORD']
 
-EMAIL_HOST_PASSWORD = 'Christino_1_2_3'
+LOGIN_URL = '/admin/'

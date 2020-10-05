@@ -1,31 +1,29 @@
-# Python stuff
+# ---> Python binary
 __pycache__/
 
-# Django db stuff
+# ---> Django migrations
 migrations/
 
-# Database file
+# ---> Database file
 *.sqlite3
 
-# Static root folder made by `python manage.py collectstatic command`
-cdn/
-
-# VSCode configuration settings
+# ---> VSCode configuration settings
 .vscode/
 
-# Secret files for storage
+# ---> Personal Credentials
+# Contributors will be emailed the credential file
 *.secret
 
-# Virtualenv folder
+# ---> Virtualenv folder
 website-portfolio/
 
-# Production environment variables
-*.prod
-
-# Public compiled folder with command `python manage.py collectstatic`
+# ---> Compiled folder with command `python manage.py collectstatic`
+# Contains static files
 staticfiles/
+
+# ---> Contains media files
 info/
 pics/
 
-# Log files
+# ---> Log folder
 logs/

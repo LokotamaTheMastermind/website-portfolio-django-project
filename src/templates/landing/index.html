@@ -210,7 +210,6 @@
     </section>
 
     <!-- Section for contact -->
-    <!-- TODO: make this section responsive -->
     <section class="container-fluid contact-banner padding-large" id="contact">
         <h3 class="text-center text-white display-4">Contact Developer</h3>
         <div class="container">
@@ -219,9 +218,9 @@
         <hr class="border-white w-50">
         <div class="pb-5"></div>
         <div class="row">
-            <div class="col-lg-6">
-                <div class="container ml-4">
-                    <table class="table table-bordered">
+            <div class="col-lg-6 col-md-12">
+                <div class="container ml-md-2 ml-lg-4">
+                    <table class="table table-bordered" id="contactTable">
                         <tr>
                             <td class="text-white"><i class="fa fa-phone text-info"></i> <span
                                     class="ml-2 lead float-right">(+234)
@@ -250,20 +249,21 @@
                     </table>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <!-- Contact me form -->
+            <div class="col-lg-6 col-md-12">
                 <div class="container">
                     <form action="/" method="POST" class="form-group">
                         {% csrf_token %}
                         <label class="font-size-1 text-white" for="sender-name">Sender name</label>
                         <input type="text" name="sender-name" id="sender-name" required placeholder="John Doe"
-                            class="form-control w-75">
+                            class="form-control w-100">
                         <label for="msg-subject" class="font-size-1 text-white">Message subject</label>
                         <input type="text" name="msg-subject" id="msg-subject" required
-                            placeholder="Mind for cup of tea" class="form-control w-75">
+                            placeholder="Mind for cup of a tea" class="form-control w-100">
                         <label for="msg-body" class="font-size-1 text-white">Message</label>
-                        <textarea class="form-control w-75 pb-4 mb-2" placeholder="Message body" required id="msg-body"
+                        <textarea class="form-control w-100 pb-4 mb-2" placeholder="Message body" required id="msg-body"
                             name="msg-body"></textarea>
-                        <button type="submit" class="btn btn-primary w-75">Send message<i
+                        <button type="submit" class="btn btn-primary w-100">Send message<i
                                 class="fa fa-paper-plane text-white pl-2"></i></button>
                     </form>
                 </div>
@@ -276,3 +276,7 @@
 <!-- Footer section -->
 {% include 'shared/components/footer.html' %}
 {% endblock body %}
+
+{% block extra_js %}
+<script src="{% static 'shared/js/components/landing-script.js' %}"></script>
+{% endblock extra_js %}

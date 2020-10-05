@@ -10,7 +10,7 @@ from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 def index(request):
     project_list = Project.objects.all().order_by('-posted_at')
     page = request.GET.get('page', 1)
-    paginator = Paginator(project_list, 5)
+    paginator = Paginator(project_list, 4)
 
     number_of_results = paginator.count
 
@@ -69,7 +69,7 @@ def update(request, id):
                            request.FILES or None, instance=project)
         if form.is_valid:
             form.save()
-            return HttpResponseRedirect('/admin/')
+            return HttpResponseRedirect('/management/')
 
     context = {
         'form': form
