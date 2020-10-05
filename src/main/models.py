@@ -9,7 +9,7 @@ class Project(models.Model):
                                     help_text='Name of the website project', verbose_name='Project name', default='Example Site', unique=True)
     project_description = models.TextField(blank=False, null=False, verbose_name='Project description',
                                            help_text='Make this section long explaining what the project is about', default='This is a website I made for ...')
-    project_picture = models.ImageField(default='shared/pics/projects/default.jpg',
+    project_picture = models.ImageField(default='shared/default.jpg',
                                         help_text='Home page view of the project <em>Should be personal pictures and not from external sites</em><br>It must be one picture', verbose_name='Project picture path', upload_to='pics/projects', blank=True, null=True)
     project_url = models.URLField(blank=False, null=False, default='https://github.com/LokotamaTheMastermind/',
                                   help_text='GitHub link to project for personal account', verbose_name='Source code link')
@@ -22,7 +22,7 @@ class Project(models.Model):
     extra_information = models.FileField(
         help_text='Extra information about project', blank=True, null=True, upload_to='info/', verbose_name='Extra information file path', validators=[FileExtensionValidator([
             'txt'
-        ])], default='shared/info/default.txt')
+        ])], default='shared/default.txt')
     is_in_progress = models.BooleanField(default=False, blank=False, null=False,
                                          verbose_name='Project status', help_text='Are you done with the project')
 

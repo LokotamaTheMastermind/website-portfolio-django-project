@@ -23,4 +23,9 @@ website-portfolio/
 *.prod
 
 # Public compiled folder with command `python manage.py collectstatic`
-public/
+staticfiles/
+info/
+pics/
+
+# Log files
+logs/

@@ -10,7 +10,10 @@
     "db:migrate": "python manage.py makemigrations && python manage.py migrate",
     "collectstatic": "python manage.py collectstatic",
     "shell": "python manage.py shell",
-    "repo:push": "git pull origin master && git push origin master"
+    "repo:push": "git pull origin master && git push origin master",
+    "createadmin": "python manage.py createsuperuser --user admin --email admin@example.com",
+    "db:fresh": "del development.sqlite3 && npm run db:migrate && npm run createadmin",
+    "logging:directory": "dir > logs/directories.log"
   },
   "keywords": [
     "django",

@@ -4,11 +4,20 @@
 
 {% block body %}
 {% include 'shared/components/navbar2.html' %}
+
+<!-- Main content -->
 <main>
+    <!-- Listing section -->
     <section class="container-fluid">
         <div class="container">
-            <h1 class="display-4 text-center">Queries of Projects</h1>
-            <hr>
+            <!-- Header -->
+            <h1 class="display-4 text-center">Listing</h1>
+
+            <!-- Divider -->
+            <hr class="border-dark w-50">
+            {% if not empty %}
+
+            <!-- Objects table -->
             <table class="table table-bordered">
                 <tbody>
                     {% for post in posts %}
@@ -22,8 +31,49 @@
                     {% endfor %}
                 </tbody>
             </table>
+            {% else %}
+
+            <!-- Message -->
+            <p class="text-center lead"><code>Sorry no query object posted</code></p>
+            {% endif %}
+
+            <!-- Information Card -->
+            <div class="card bg-primary">
+                <div class="card-body text-white text-right">
+                    <h5>Query objects posted are <code>{{ num_of_results }}</code></h5>
+                </div>
+            </div>
+
+            {% if projects.has_other_pages %}
+            <!-- Pagination -->
+            <ul class="pagination justify-content-center">
+                {% if projects.has_previous %}
+                <li class="page-item default-cursor"><a href="?page={{ projects.previous_page_number }}"
+                        class="page-link">&laquo;</a></li>
+                {% else %}
+                <li class="disabled page-item page-link"><span>&laquo;</span></li>
+                {% endif %}
+                {% for i in projects.paginator.page_range %}
+                {% if projects.number == i %}
+                <li class="active page-item page-link cursor"><span>{{ i }} <span
+                            class="sr-only">(current)</span></span>
+                </li>
+                {% else %}
+                <li class="page-item cursor"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if projects.has_next %}
+                <li class="page-item cursor"><a href="?page={{ projects.next_page_number }}"
+                        class="page-link">&raquo;</a>
+                </li>
+                {% else %}
+                <li class="disabled page-item page-link default-cursor"><span>&raquo;</span></li>
+                {% endif %}
+            </ul>
+            {% endif %}
         </div>
     </section>
 </main>
-{% include 'shared/components/footer.html' %}
+
+{% include 'shared/components/footer2.html' %}
 {% endblock body %}

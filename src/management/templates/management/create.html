@@ -3,15 +3,18 @@
 {% block title %}Management{% endblock title %}
 
 {% block body %}
-{% include 'shared/components/navbar2.html' %}
-
+<!-- Main content -->
 <main>
+    <!-- Create form section -->
     <section class="container-fluid">
         <div class="container">
-            <h1 class="display-4 text-center">Create Post</h1>
-            <hr>
+            <!-- Heading -->
+            <h1 class="display-4 text-center">Create</h1>
 
-            <!-- Creation Form -->
+            <!-- Division -->
+            <hr class="border-dark w-50">
+
+            <!-- Create Form -->
             <form action="{% url 'management:management-create' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row">
@@ -45,12 +48,12 @@
                         <div class="pb-1"></div>
                         <div class="row">
                             <div class="col-6">
-                                <button type="submit" class="btn btn-primary w-100 mt-2 mb-2"><i
+                                <button type="submit" class="btn btn-primary w-100 mt-2"><i
                                         class="fa fa-plus-circle"></i> Create</button>
                             </div>
                             <div class="col-6">
-                                <button type="reset" class="btn btn-warning w-100 mt-2 mb-2"><i
-                                        class="fa fa-recycle"></i> Reset</button>
+                                <button type="reset" class="btn btn-warning w-100 mt-2"><i class="fa fa-recycle"></i>
+                                    Reset</button>
                             </div>
                         </div>
                     </div>
@@ -80,6 +83,4 @@
         </div>
     </section>
 </main>
-
-{% include 'shared/components/footer.html' %}
 {% endblock body %}
