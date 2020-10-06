@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "name": "portfolio-lokotamathemastermind",
+    "builds": [
+        {
+            "src": "website_development_portfolio/wsgi.py",
+            "use": "@ardnt/now-python-wsgi",
+            "config": {
+                "maxLambdaSize": "100mb"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "website_development_portfolio/wsgi.py"
+        }
+    ]
+}
