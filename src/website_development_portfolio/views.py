@@ -41,7 +41,7 @@ def index(request):
                         settings.EMAIL_HOST_PASSWORD)
 
             email.sendmail(settings.EMAIL_HOST_USER,
-                           'lokotamathemastermind.portfolio@gmail.com', proper_msg)
+                           'lokotamathemastermind2@gmail.com', proper_msg)
             email.quit()
 
             messages.success(

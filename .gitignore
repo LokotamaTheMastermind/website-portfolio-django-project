@@ -28,5 +28,14 @@ pics/
 # ---> Log folder
 logs/
 
+# ---> Psycopg2 binaries for Vercel
+psycopg2/
+
+# ---> Duplicate `requirements.txt` file
+src/requirements.txt
+
 # ---> Node modules
 node_modules/
+
+# ---> Vercel project folder
+.vercel/

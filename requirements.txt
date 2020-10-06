@@ -6,7 +6,6 @@ chardet==3.0.4
 colorama==0.4.3
 Django==3.1.2
 django-cleanup==5.1.0
-django-environ==0.4.5
 idna==2.10
 isort==5.5.4
 lazy-object-proxy==1.4.3
@@ -25,4 +24,6 @@ sqlparse==0.3.1
 toml==0.10.1
 tweepy==3.9.0
 urllib3==1.25.10
+whitenoise==5.2.0
 wrapt==1.12.1
+psycopg2==2.7.7

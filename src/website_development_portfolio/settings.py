@@ -1,5 +1,6 @@
 """ Project Settings """
 
+import dj_database_url
 import os
 from pathlib import Path
 from decouple import config
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -87,7 +89,16 @@ if DEBUG:
     }
 elif not DEBUG:
     # Look for database adaptor
-    DATABASES = {}
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'd2krdagta4csvt',
+            'USER': 'fjbwvifmtqhngv',
+            'PASSWORD': '55e60d3ee7352cc2e1c2c97aaa078dd1537ffdee4be8d69220f9c8323bd47ef7',
+            'HOST': 'ec2-52-21-0-111.compute-1.amazonaws.com',
+            'PORT': '5432',
+        }
+    }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -162,3 +173,10 @@ elif not DEBUG:
 
 
 LOGIN_URL = '/admin/'
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+DATABASES['default'] = dj_database_url.config(
+    conn_max_age=None, ssl_require=True)
