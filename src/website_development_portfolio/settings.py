@@ -9,7 +9,7 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 
-DEBUG = True
+DEBUG = False
 
 
 if DEBUG:
@@ -88,15 +88,14 @@ if DEBUG:
         }
     }
 elif not DEBUG:
-    # Look for database adaptor
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'd2krdagta4csvt',
-            'USER': 'fjbwvifmtqhngv',
-            'PASSWORD': '55e60d3ee7352cc2e1c2c97aaa078dd1537ffdee4be8d69220f9c8323bd47ef7',
-            'HOST': 'ec2-52-21-0-111.compute-1.amazonaws.com',
-            'PORT': '5432',
+            'ENGINE': 'django.db.backends.psycopg2',
+            'NAME': config('DATABASE_NAME'),
+            'USER': config('DATABASE_USER'),
+            'PASSWORD': config('DATABASE_PASSWORD'),
+            'HOST': config('DATABASE_HOST'),
+            'PORT': config('DATABASE_PORT'),
         }
     }
 
@@ -168,7 +167,7 @@ if DEBUG:
     EMAIL_HOST_USER = config('EMAIL_ID')
     EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 elif not DEBUG:
-    EMAIL_HOST_USER = os.environ['EMAIl_ID']
+    EMAIL_HOST_USER = os.environ['EMAIL_ID']
     EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASSWORD']
 
 
@@ -178,5 +177,4 @@ LOGIN_URL = '/admin/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-DATABASES['default'] = dj_database_url.config(
-    conn_max_age=None, ssl_require=True)
+DATABASES['default'] = dj_database_url.config()
