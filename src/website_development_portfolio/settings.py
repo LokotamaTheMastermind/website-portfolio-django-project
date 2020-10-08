@@ -90,7 +90,7 @@ if DEBUG:
 elif not DEBUG:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.psycopg2',
+            'ENGINE': 'django.db.backends.postgresql',
             'NAME': config('DATABASE_NAME'),
             'USER': config('DATABASE_USER'),
             'PASSWORD': config('DATABASE_PASSWORD'),
@@ -177,4 +177,10 @@ LOGIN_URL = '/admin/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-DATABASES['default'] = dj_database_url.config()
+DATABASES['default'] = dj_database_url.config(ssl_require=False)
+
+
+if not DEBUG:
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SESSION_EXPIRE_AT_BROWSER_CLOSE=True
