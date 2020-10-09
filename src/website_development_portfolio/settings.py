@@ -9,7 +9,7 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 
-DEBUG = False
+DEBUG = True
 
 
 if DEBUG:

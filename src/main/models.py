@@ -30,8 +30,6 @@ class Project(models.Model):
         return self.project_name
 
     def read_file_content(self):
-        import os
-
         PHYSICAL_PATH = f"{settings.PUBLIC_ROOT}/{self.extra_information.url}".replace(
             '//', '/').replace('\\', '/')
         with open(f"{PHYSICAL_PATH}") as extra_info_file:
@@ -41,13 +39,22 @@ class Project(models.Model):
                 return line
 
     def save(self, *args, **kwargs):
-        from google.cloud import storage
+        import pyrebase
 
-        profile_picture = self.project_picture.url
+        config = {
+            "apiKey": "AIzaSyDuaZXfOeAbH4dtgodLVXqjf7oJu531dcE",
+            "authDomain": "website-portfolio-fc57b.firebaseapp.com",
+            "databaseURL": "https://website-portfolio-fc57b.firebaseio.com",
+            "projectId": "website-portfolio-fc57b",
+            "storageBucket": "website-portfolio-fc57b.appspot.com",
+            "messagingSenderId": "364493579486",
+            "appId": "1:364493579486:web:ffb2b9800e9922f93f8e4f",
+            "measurementId": "G-XL10BV290D"
+        }
 
-        client = storage.Client()
-        bucket = client.get_bucket('gs://website-portfolio-fc57b.appspot.com')
-
-        blob = bucket.blob(profile_picture)
-        blob.upload_from_filename(filename=profile_picture)
-        super().save(*args, **kwargs)
+        firebase = pyrebase.initialize_app(config)
+        storage = firebase.storage()
+        cloud_path = 'uploads/'
+        info = self.extra_information.url
+        print(info)
+        storage.child(cloud_path).put(info)

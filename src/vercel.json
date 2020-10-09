@@ -6,7 +6,7 @@
             "src": "website_development_portfolio/wsgi.py",
             "use": "@ardnt/now-python-wsgi",
             "config": {
-                "maxLambdaSize": "100mb"
+                "maxLambdaSize": "150mb"
             }
         }
     ],
