@@ -8,6 +8,7 @@ def post_new_project(sender, instance, created, **kwargs):
     import tweepy
     import requests
     from requests.exceptions import ConnectionError
+    from google.cloud import storage
 
     url = 'https://www.google.com/'
 
@@ -45,3 +46,11 @@ def post_new_project(sender, instance, created, **kwargs):
             post_name, source_code, post_author, post_date)
 
         status = api.update_status(status=tweet)
+
+    profile_picture = instance.project_picture.url
+
+    client = storage.Client()
+    bucket = client.get_bucket('gs://website-portfolio-fc57b.appspot.com')
+
+    blob = bucket.blob(profile_picture)
+    blob.upload_from_filename(filename=profile_picture)

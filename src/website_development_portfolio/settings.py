@@ -15,7 +15,7 @@ DEBUG = False
 if DEBUG:
     SECRET_KEY = config('SECRET_KEY')
 elif not DEBUG:
-    SECRET_KEY = os.environ['SECRET_KEY']
+    SECRET_KEY = config('SECRET_KEY')
 
 
 ALLOWED_HOSTS = [
@@ -87,7 +87,7 @@ if DEBUG:
             'NAME': BASE_DIR / 'development.sqlite3',
         }
     }
-elif not DEBUG:
+else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -167,8 +167,8 @@ if DEBUG:
     EMAIL_HOST_USER = config('EMAIL_ID')
     EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 elif not DEBUG:
-    EMAIL_HOST_USER = os.environ['EMAIL_ID']
-    EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASSWORD']
+    EMAIL_HOST_USER = config('EMAIL_ID')
+    EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 
 
 LOGIN_URL = '/admin/'
@@ -177,10 +177,10 @@ LOGIN_URL = '/admin/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-DATABASES['default'] = dj_database_url.config(ssl_require=False)
-
-
 if not DEBUG:
+    DATABASE_URL = config('DATABASE_URL')
+    DATABASES['default'] = dj_database_url.config(
+        default=DATABASE_URL, conn_max_age=600)
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    SESSION_EXPIRE_AT_BROWSER_CLOSE=True
+    SESSION_EXPIRE_AT_BROWSER_CLOSE = True

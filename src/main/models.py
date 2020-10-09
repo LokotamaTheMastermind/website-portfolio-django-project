@@ -39,3 +39,15 @@ class Project(models.Model):
             for i in content:
                 line = i.strip()
                 return line
+
+    def save(self, *args, **kwargs):
+        from google.cloud import storage
+
+        profile_picture = self.project_picture.url
+
+        client = storage.Client()
+        bucket = client.get_bucket('gs://website-portfolio-fc57b.appspot.com')
+
+        blob = bucket.blob(profile_picture)
+        blob.upload_from_filename(filename=profile_picture)
+        super().save(*args, **kwargs)
