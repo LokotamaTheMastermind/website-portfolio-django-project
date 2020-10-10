@@ -1,1 +1,1 @@
-web: gunicorn website_development_portfolio.wsgi --log-file -
+web: python manage.py migrate && python manage.py runserver
