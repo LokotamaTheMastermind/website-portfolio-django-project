@@ -9,7 +9,7 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 
-DEBUG = True
+DEBUG = False
 
 
 if DEBUG:
@@ -22,6 +22,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '.vercel.app'
+    'lokotamathemastermind2website.herokuapp.com',
 ]
 
 
@@ -179,8 +180,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 if not DEBUG:
     DATABASE_URL = config('DATABASE_URL')
-    DATABASES['default'] = dj_database_url.config(
-        default=DATABASE_URL, conn_max_age=600)
+    production_database = dj_database_url.config(
+        default=DATABASE_URL, conn_max_age=500)
+    DATABASES['default'].update(production_database)
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SESSION_EXPIRE_AT_BROWSER_CLOSE = True
